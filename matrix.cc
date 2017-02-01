@@ -26,17 +26,11 @@ Matrix::Matrix(unsigned n, unsigned p) {
 }
 
 unsigned Matrix::get_size_i() const {
-  // TODO
-  cerr << "The function has yet to be implemented" << endl;
-  assert(false);
-  return 0;
+  return size_i;
 }
 
 unsigned Matrix::get_size_j() const {
-  // TODO
-  cerr << "The function has yet to be implemented" << endl;
-  assert(false);
-  return 0;
+  return size_j;
 }
 
 void Matrix::set(unsigned i, unsigned j, scalar_t x) {
@@ -67,10 +61,18 @@ void Matrix::print() const {
 }
 
 void Matrix::export_to_file(ofstream& out) {
-  out << "Writing into a file" << endl;
-  // TODO
-  cerr << "The function has yet to be implemented" << endl;
-  assert(false);
+  out << "matrix(c(";
+  for (unsigned i = 0; i < size_i; i++) {
+    for (unsigned j = 0; j < size_j; j ++){
+      out << contents.at(i).at(j);
+      if (i < size_i-1 || j < size_j -1){
+	out <<", ";
+      }else{
+	out <<")";
+      }
+    }
+  }
+  out << ", nrow = "<< size_i << ", ncol = "<< size_j << ", byrow = T)"; 		  
 }
 
 /*****************************************************/
